@@ -12,7 +12,15 @@ const MenuItemSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
-    }
+    },
+    categories:{
+        type:[String], //array of strings to hold multiple categories
+        required:true
+    },
+    allergens:{
+        type:[String],
+        required:true
+    },
 });
 
 module.exports = mongoose.model('MenuItem', MenuItemSchema);
