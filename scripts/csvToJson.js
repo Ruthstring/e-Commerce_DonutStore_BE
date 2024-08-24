@@ -11,7 +11,7 @@ csv()
       // Map the fields to lowercase
       const formattedData = jsonObj.map(item => ({
           title: item.Title,          // Map to lowercase
-          price: item.Price,
+          price: parseFloat(item.Price.replace('$', '')), // Remove $ and convert to number
           description: item.Description,
           categories:item.Categories,
           allergens:item.Allergens,
