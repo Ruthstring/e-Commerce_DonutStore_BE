@@ -13,8 +13,9 @@ csv()
           title: item.Title,          // Map to lowercase
           price: parseFloat(item.Price.replace('$', '')), // Remove $ and convert to number
           description: item.Description,
-          categories:item.Categories,
-          allergens:item.Allergens,
+          categories: item.Categories.split(',').map(category => category.trim()), // Split categories by comma and trim whitespace
+          allergens: item.Allergens.split(',').map(allergen => allergen.trim()), // Split allergens by comma and trim whitespace
+          imageUrl: item.imageUrl 
       }));
 
       // Save the correctly formatted JSON to a file
