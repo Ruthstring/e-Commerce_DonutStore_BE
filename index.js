@@ -5,6 +5,7 @@ const dbConnection=require("./DB/dbConnection.js")
 const cors=require("cors");
 
 const menuRoutes = require('./routes/menuRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app=express();
 const port=process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 
 //Routes
 app.use('/api/menu', menuRoutes);
+app.use('/api/auth', authRoutes); 
 
 // Start the server
 app.listen(port, () => {
