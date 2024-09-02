@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const registerUser = async (req, res) => {
     const { username, email, password } = req.body;
     console.log("Received password:", password);
-    
+
     try {
       //check if user exists
       const existingUser = await User.findOne({ email });
@@ -38,7 +38,7 @@ const registerUser = async (req, res) => {
   const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
-      const user = await User.findOne({ email }).populate('household_id');
+      const user = await User.findOne({ email });
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
