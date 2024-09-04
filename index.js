@@ -6,6 +6,7 @@ const cors=require("cors");
 
 const menuRoutes = require('./routes/menuRoutes');
 const authRoutes = require('./routes/authRoutes');
+const cartRoutes=require("./routes/cartRoutes.js")
 
 const app=express();
 const port=process.env.PORT || 5000;
@@ -24,7 +25,8 @@ app.get('/', (req, res) => {
 
 //Routes
 app.use('/api/menu', menuRoutes);
-app.use('/api/auth', authRoutes); 
+app.use('/api/auth', authRoutes);
+app.use("/api/cart", cartRoutes) 
 
 // Start the server
 app.listen(port, () => {

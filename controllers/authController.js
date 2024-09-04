@@ -63,7 +63,12 @@ const registerUser = async (req, res) => {
         process.env.JWT_SECRET, // Ensure JWT_SECRET matches your .env file
         { expiresIn: '1h' } // Optional: token expiration
       );
-  
+        
+
+       // Log the token and user
+       console.log('JWT Token:', token);
+       console.log('User:', user);
+
       res.status(200).json({ token, currentUser: user });
     } catch (error) {
       res.status(500).json({ message: error.message });
