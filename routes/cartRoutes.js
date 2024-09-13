@@ -1,5 +1,5 @@
 const express = require('express');
-const { addToCart, getCart, checkout } = require('../controllers/cartController');
+const { addToCart, getCart, checkout,removeFromCart } = require('../controllers/cartController');
 const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -11,5 +11,8 @@ router.get('/', authMiddleware, getCart); //??? do i need to change this route?
 
 // Checkout
 router.post('/checkout', authMiddleware, checkout);
+
+//remove item
+router.delete("/remove",authMiddleware,removeFromCart)
 
 module.exports = router;

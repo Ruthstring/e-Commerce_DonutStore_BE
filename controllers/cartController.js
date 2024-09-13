@@ -122,6 +122,30 @@ const updateQuantity = async (req, res) => {
     }
   };
 
+
+// Remove item from cart
+const removeFromCart = async (req, res) => {
+    const userId = req.user._id;
+    const { productId } = req.body;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Remove the product from the cart
+        user.cart = user.cart.filter(item => item.productId.toString() !== productId);
+
+        await user.save();
+        res.json({ message: 'Product removed from cart' });
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to remove product', error: err.message });
+    }
+};
+
+
 // Checkout (turns cart into order)
 const checkout = async (req, res) => {
     const userId = req.user._id;
@@ -152,4 +176,4 @@ const checkout = async (req, res) => {
     }
 };
 
-module.exports = { addToCart, getCart, checkout };
+module.exports = { addToCart, getCart, checkout,removeFromCart };
