@@ -1,4 +1,5 @@
 const User = require('../models/UserModel');
+const MenuItem =require("../models/MenuItemModel")
 
 
 const addToCart = async (req, res) => {
@@ -82,7 +83,7 @@ const productIndex = user.cart.findIndex(item => {
 // Get cart
 const getCart = async (req, res) => {
     const userId = req.user._id;
-
+    console.log(userId)
     try {
         const user = await User.findById(userId).populate('cart.productId');
         if (!user) {
@@ -90,8 +91,10 @@ const getCart = async (req, res) => {
         }
         
         res.json(user.cart);
+        console.log(user.cart)
 
     } catch (err) {
+        console.error('Error retrieving cart:', err);
         res.status(500).json({ message: err.message });
     }
 };
