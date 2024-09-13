@@ -176,4 +176,4 @@ const checkout = async (req, res) => {
     }
 };
 
-module.exports = { addToCart, getCart, checkout,removeFromCart };
+module.exports = { addToCart, getCart, checkout,removeFromCart, updateQuantity };
