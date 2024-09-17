@@ -28,32 +28,6 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-// const authMiddleware = async (req, res, next) => {
-//   const { authorization } = req.headers;
 
-//   // Check if the authorization header exists
-//   if (!authorization) {
-//     return res.status(401).json({ error: 'Not Authorized, missing token' });
-//   }
-
-//   const token = authorization.split(' ')[1]; // Get the token part
-
-//   try {
-//     const decodedToken = jwt.verify(token, process.env.JWT_SECRET); // Decode the token
-//     const user = await User.findById(decodedToken.id); // Fetch the user using the decoded ID
-
-//     // Check if the user exists
-//     if (!user) {
-//       return res.status(401).json({ error: 'Not Authorized, user not found' });
-//     }
-
-//     // Attach the user to the request
-//     req.user = user;
-//     next(); // Move to the next middleware or route handler
-//   } catch (error) {
-//     console.log('Error in authentication:', error.message);
-//     return res.status(401).json({ error: 'Invalid token or session expired' });
-//   }
-// };
 
 module.exports = authMiddleware;
